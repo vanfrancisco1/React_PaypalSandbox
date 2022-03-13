@@ -1,6 +1,8 @@
 # REACT SANDBOX PAYPAL
 
-## A SELF-MADE PAYPAL SANDBOX FOR REACT NATIVE PROJECTS. 
+## A SELF-MADE PAYPAL SANDBOX FOR REACT NATIVE PROJECTS.
+
+INSPIRED BY MR. [ADITYA SINGH](https://github.com/morfsys) AND [NITISH SHARMA'S REACT PAYPAL WEBVIEW SOLUTIONS](https://blog.logrocket.com/how-to-integrate-paypal-payments-with-react-native/).
 
 ### PRE-REQUISITES:
 
