@@ -25,3 +25,8 @@ TO CHANGE THE FRONT DESIGN HEADER AND BODY TEXT, JUST CHANGE THE PROP VALUES IN 
 ```
 <TopPage Header="FRONT TEXT TITLE" BodyText="- Current Available Payment Options -" />
 ```
+ONCE YOU PUT YOUR STUFF, YOU CAN RUN IT VIA 
+
+```
+npm start
+```
