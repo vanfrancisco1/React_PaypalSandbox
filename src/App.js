@@ -5,14 +5,14 @@ import {Helmet} from "react-helmet";
 import { useState } from 'react';
 function App() {
   const MyOptions = {
-    'client-id' : 'AX-XjHHzeB40Aaezl03ecZ1AFVE2HDi_xL2Efwu3wVZcrkuPpRbCBmS724VT-irvNn-_pVfusxNUILQA',
+    'client-id' : 'YOUR CLIENT ID',
     'currency' : "PHP",
   }
   var [PaymentStatus,setPaymentStatus] =  useState(false);
   return (
     <div className="App">
       <Helmet title={PaymentStatus === true ? 'SUCCESS' : document.title }></Helmet>
-      <TopPage Header="WELCOME TO KARAW CRAFTVENTURE PAYPAL GATEWAY" BodyText="- Current Available Payment Options -" />
+      <TopPage Header="FRONT TEXT TITLE" BodyText="- Current Available Payment Options -" />
       <div className='PriceIndicator'>
         <p>TOTAL PRICE:</p>
         <p id='Price'>1000</p>
