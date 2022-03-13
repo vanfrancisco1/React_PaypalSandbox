@@ -1,23 +1,49 @@
-import logo from './logo.svg';
-import './App.css';
-
+import './MyDesigns/App.css';
+import TopPage from './MyDesigns/TopPage';
+import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
+import {Helmet} from "react-helmet";
+import { useState } from 'react';
 function App() {
+  const MyOptions = {
+    'client-id' : 'AX-XjHHzeB40Aaezl03ecZ1AFVE2HDi_xL2Efwu3wVZcrkuPpRbCBmS724VT-irvNn-_pVfusxNUILQA',
+    'currency' : "PHP",
+  }
+  var [PaymentStatus,setPaymentStatus] =  useState(false);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Helmet title={PaymentStatus === true ? 'SUCCESS' : document.title }></Helmet>
+      <TopPage Header="WELCOME TO KARAW CRAFTVENTURE PAYPAL GATEWAY" BodyText="- Current Available Payment Options -" />
+      <div className='PriceIndicator'>
+        <p>TOTAL PRICE:</p>
+        <p id='Price'>1000</p>
+      </div>
+      {PaymentStatus === false && 
+      <PayPalScriptProvider options={MyOptions} style={{maxWidth: '100px'}}>
+            <PayPalButtons style={{layout : 'horizontal'}}
+                            createOrder={(data, actions) => {
+                              return actions.order
+                                  .create({
+                                      purchase_units: [
+                                          {
+                                              amount: {
+                                                  value: document.getElementById('Price').innerHTML,
+                                              },
+                                          },
+                                      ],
+                                  })
+                                  .then((orderId) => {
+                                      // Your code here after create the order
+                                      return orderId;
+                                  });
+                          }}
+                          onApprove={function (data, actions) {
+                              return actions.order.capture().then(() => {
+                                setPaymentStatus(true)
+                              });
+                          }}/>
+        </PayPalScriptProvider>}
+        {PaymentStatus === true && 
+        <TopPage Header="Hooray!" BodyText="The payment transaction is completed!" />}
     </div>
   );
 }
